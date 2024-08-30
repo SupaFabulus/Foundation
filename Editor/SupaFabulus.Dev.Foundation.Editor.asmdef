@@ -1,0 +1,17 @@
+{
+    "name": "SupaFabulus.Dev.Foundation.Editor",
+    "references": [
+        "SupaFabulus.Dev.Foundation"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
