@@ -1,5 +1,6 @@
 ﻿using System;
 using SupaFabulus.Dev.Foundation.Core.Signals;
+using SupaFabulus.Dev.Foundation.Utils;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -63,14 +64,7 @@ namespace SupaFabulus.Dev.Foundation.Core.Singletons
 #if UNITY_EDITOR
                     string n = typeof(TSingleton).Name;
                     Debug.Log($"Searching for types of: {n}");
-                    string[] guids = AssetDatabase.FindAssets(
-                        $"t:{n}",
-                        new []
-                        {
-                            "Assets/Settings",
-                            "Assets/_MAIN/Settings",
-                            "Assets/_INTERNAL"
-                        });
+                    string[] guids = AssetDatabase.FindAssets($"t:{n}");
 
                     int i;
                     int c = guids.Length;
@@ -131,6 +125,7 @@ namespace SupaFabulus.Dev.Foundation.Core.Singletons
         {
             if (__instance != null)
             {
+                Safe.Destroy(__instance);
                 __instance = null;
                 __initialized = false;
             }
@@ -138,7 +133,13 @@ namespace SupaFabulus.Dev.Foundation.Core.Singletons
         
         
         [SerializeField]
+        protected bool _validateOnAwake = false;
+        [SerializeField]
+        protected bool _validateOnEnable = false;
+        [SerializeField]
         protected bool _notifyUpdateOnValidate = false;
+        [SerializeField]
+        protected string[] _validationFilterPaths;
 
         public bool NotifyUpdateOnValidate
         {
@@ -148,12 +149,12 @@ namespace SupaFabulus.Dev.Foundation.Core.Singletons
 
         public void Awake()
         {
-            Validate();
+            if(_validateOnAwake) Validate();
         }
         
         public void OnEnable()
         {
-            Validate();
+            if(_validateOnEnable) Validate();
         }
 
         public virtual bool Validate()
@@ -163,6 +164,7 @@ namespace SupaFabulus.Dev.Foundation.Core.Singletons
 #endif
             return ValidateInstance(this as TSingleton, true);
         }
+        
 
         public static bool FindInstance(bool destroyViolators = false)
         {
@@ -211,7 +213,7 @@ namespace SupaFabulus.Dev.Foundation.Core.Singletons
                     else
                     {
                         errMsg = $"WARNING: Duplicate Singleton [{instance.name}] was NOT deleted, this could lead to unexpected behavior!";
-                        Debug.LogWarning(errMsg);
+                        Debug.LogError(errMsg);
                         return false;
                     }
 #endif

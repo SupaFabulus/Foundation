@@ -7,5 +7,10 @@
             const string c = "(Clone)";
             return str.Substring(0, str.LastIndexOf(c));
         }
+
+        public static string FormatTimeValue(float seconds)
+        {
+            return seconds.ToString();
+        }
     }
 }

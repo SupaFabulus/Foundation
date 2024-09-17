@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SupaFabulus.Dev.Definitions
+namespace SupaFabulus.Dev.Foundation.ContainerAssets.Definitions
 {
     [Serializable]
     public abstract class AbstractPrefabDefinition : AbstractDefinition<GameObject>
@@ -15,9 +15,11 @@ namespace SupaFabulus.Dev.Definitions
         fileName = "PrefabDefinition",
         menuName = "SupaFabulus/Dev/Definitions/Generic Prefab Definition"
     )]
-    public class PrefabDefinition : AbstractPrefabDefinition
+    public class PrefabDefinition : AbstractPrefabDefinition, IPrefabDefinition
     {
-        
+        public string SourceID => null;
+
+        public GameObject GameObjectSource => null;
     }
     
     

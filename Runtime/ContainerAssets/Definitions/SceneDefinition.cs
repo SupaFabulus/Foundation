@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace SupaFabulus.Dev.Definitions
+namespace SupaFabulus.Dev.Foundation.ContainerAssets.Definitions
 {
     [Serializable]
     [CreateAssetMenu(

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using SupaFabulus.Dev.Foundation.Core.Enums;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,10 +25,10 @@ namespace SupaFabulus.Dev.Foundation.Common.DataModels
         public float OutTangent;
         [SerializeField]
         [MarshalAs(UnmanagedType.I1, SizeConst = 1)]
-        public AnimationUtility.TangentMode LeftTangentMode;
+        public TangentMode LeftTangentMode;
         [SerializeField]
         [MarshalAs(UnmanagedType.I1, SizeConst = 1)]
-        public AnimationUtility.TangentMode RightTangentMode;
+        public TangentMode RightTangentMode;
         [SerializeField]
         [MarshalAs(UnmanagedType.I1, SizeConst = 1)]
         public WeightedMode WeightedMode;
@@ -44,8 +45,8 @@ namespace SupaFabulus.Dev.Foundation.Common.DataModels
             Value = key.value;
             InTangent = key.inTangent;
             OutTangent = key.outTangent;
-            LeftTangentMode = AnimationUtility.TangentMode.Auto;
-            RightTangentMode = AnimationUtility.TangentMode.Auto;
+            LeftTangentMode = TangentMode.Auto;
+            RightTangentMode = TangentMode.Auto;
             WeightedMode = key.weightedMode;
             InWeight = key.inWeight;
             OutWeight = key.outWeight;
@@ -59,8 +60,8 @@ namespace SupaFabulus.Dev.Foundation.Common.DataModels
             Value = k.value;
             InTangent = k.inTangent;
             OutTangent = k.outTangent;
-            LeftTangentMode = AnimationUtility.TangentMode.Auto;
-            RightTangentMode = AnimationUtility.TangentMode.Auto;
+            LeftTangentMode = TangentMode.Auto;
+            RightTangentMode = TangentMode.Auto;
             WeightedMode = k.weightedMode;
             InWeight = k.inWeight;
             OutWeight = k.outWeight;

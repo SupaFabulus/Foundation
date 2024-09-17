@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace SupaFabulus.Dev.Definitions
+namespace SupaFabulus.Dev.Foundation.ContainerAssets.Definitions
 {
     [Serializable]
     public struct DefinitionDisplayInfo
