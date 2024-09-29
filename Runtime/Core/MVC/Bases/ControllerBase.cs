@@ -15,7 +15,7 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Bases
     where TView : Component, IView
     {
         public bool IsInitialized => _isInitialized;
-        public bool IsRunning => _isRunning;
+        public virtual bool IsRunning => _isRunning;
         
         
         public virtual void InitController(TModel model, TView view)
@@ -31,22 +31,22 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Bases
             }
         }
 
-        public void DeInitController()
+        public virtual void DeInitController()
         {
             _isInitialized = false;
         }
 
-        public void StartController()
+        public virtual void StartController()
         {
             _isRunning = true;
         }
         
-        public void StopController()
+        public virtual void StopController()
         {
             _isRunning = false;
         }
 
-        public void ResetController()
+        public virtual void ResetController()
         {
             
         }
