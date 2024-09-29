@@ -1,6 +1,6 @@
 {
   "name": "supafabulus.dev.foundation",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "displayName": "Foundation",
   "description": "Required support types and functionality for most SupaFabulus Packages",
   "unity": "2021.3",
