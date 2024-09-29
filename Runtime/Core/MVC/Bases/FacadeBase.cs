@@ -47,6 +47,8 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Bases
                 InitController();
 
                 _isInitialized = true;
+                
+                HandleInitComplete();
             }
         }
 

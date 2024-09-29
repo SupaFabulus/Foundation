@@ -4,6 +4,7 @@ using SupaFabulus.Dev.Foundation.Core.MVC.Common.Facade.Enums;
 using SupaFabulus.Dev.Foundation.Core.MVC.Common.Model;
 using SupaFabulus.Dev.Foundation.Core.MVC.Common.View;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SupaFabulus.Dev.Foundation.Core.MVC.Common.Facade
 {
@@ -19,6 +20,9 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Common.Facade
         where TView : Component, IView
         where TController : Component, IController<TModel, TView>
     {
+        [SerializeField] 
+        protected UnityEvent _onInitComplete;
+        
         [SerializeField]
         protected TModel _model;
         [SerializeField][HideInInspector]
@@ -34,6 +38,8 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Common.Facade
         
         [SerializeField]
         protected bool _surviveSceneChange = false;
+
+        public UnityEvent OnInitComplete => _onInitComplete;
 
         protected virtual void CheckForSceneChangeProtection()
         {
@@ -72,6 +78,11 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Common.Facade
         protected abstract void InitModel();
         protected abstract void InitController();
         public virtual string DefaultControllerName => _defaultControllerName;
+
+        protected virtual void HandleInitComplete() => NotifyInitComplete();
+
+        protected void NotifyInitComplete()
+        { if (_onInitComplete != null) { _onInitComplete.Invoke(); } }
 
     }
 }
