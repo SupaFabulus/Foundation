@@ -54,7 +54,27 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Bases
 
         public override void DeInitFacade()
         {
-            ResetFacade();
+            Deactivate();
+            
+            if (_controller != null)
+            {
+                _controller.DeInitController();
+            }
+
+            if (_view != null)
+            {
+                _view.DeInitView();
+            }
+
+            if (_model != null)
+            {
+                _model.DeInitModel();
+            }
+            
+            ClearComponents();
+            
+            _isActive = false;
+            _isRunning = false;
             _isInitialized = false;
         }
 
@@ -263,32 +283,20 @@ namespace SupaFabulus.Dev.Foundation.Core.MVC.Bases
             }
         }
 
-        public void InitView()
+        public virtual void InitView()
         {
-            throw new NotImplementedException();
+            if (_view != null)
+            {
+                _view.InitView();
+            }
         }
 
-        public void DeInitView()
+        public virtual void DeInitView()
         {
-            Deactivate();
-            
-            if (_controller != null)
-            {
-                _controller.DeInitController();
-            }
-
             if (_view != null)
             {
                 _view.DeInitView();
             }
-
-            if (_model != null)
-            {
-                _model.DeInitModel();
-            }
-            
-            ClearComponents();
-            _isInitialized = false;
         }
 
         public virtual void Activate()
